@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 
-
 class PlayButton extends Component {
 
-  btnPlayHandler = e => {
-    getAllPeople().then(data => {
-      console.log('data', data)
-    })
-  }
-
-
   render() { 
-    return ( <button className="btn btn-primary" onClick={this.btnPlayHandler}>Play</button> );
+    return ( <button className="btn btn-primary" onClick={this.props.onClick}>Play</button> );
   }
 }
  

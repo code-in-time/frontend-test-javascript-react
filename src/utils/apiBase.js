@@ -18,16 +18,9 @@
   }
 
 export const getAllPeople = () => {
-  const result = api('people')
-  console.log('result', result)
-  return result
+  return api('people')
 }
 
-/*
-
-
-
-
-
-*/
-
+export const getPerson = (id) => {
+  return api(`people/${id}`)
+}
