@@ -1,4 +1,8 @@
 
+  /**
+   * The base API function that all APIs will use
+   * @param {string} url 
+   */
   async function api (url = '') {
 
     let fullUrl = `${process.env.REACT_APP_API_URL}/${url}`
@@ -17,10 +21,18 @@
     return await response.json();
   }
 
+
+/**
+ * Get all the people
+ */
 export const getAllPeople = () => {
   return api('people')
 }
 
-export const getPerson = (id) => {
-  return api(`people/${id}`)
+/**
+ * Get a person
+ * @param {number} id 
+ */
+export const getPerson = (id = 0) => {
+  return api(`people/${id.toString()}`)
 }

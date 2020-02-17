@@ -24,14 +24,14 @@ class App extends Component {
 
   getNewCards () {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-    getPerson('3').then(data => {
+    getPerson(3).then(data => {
       console.log('getNewCards 3', data)
       this.setState({
         card1: data
       })
     })
 
-    getPerson('5').then(data => {
+    getPerson(5).then(data => {
       console.log('getNewCards 5', data)
       this.setState({
         card2: data
