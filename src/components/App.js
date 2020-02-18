@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getAllPeople, getPerson } from '../utils/apiBase'
 import PlayButton from './PlayButton';
 import { pickTwoUniqueNumbers } from '../utils/helpers'
+import PlayingCard from './PlayingCard';
 
 class App extends Component {
   state = {
@@ -29,6 +30,9 @@ class App extends Component {
    * @param {number} id2 
    */
   getNewCards (maxNo) {
+    // Reset cards in state
+    this.setState({card1: null, card2: null})
+    // Pick two card ids
     const cardNos = pickTwoUniqueNumbers(maxNo);
     console.log('cardno', cardNos)
 
@@ -43,12 +47,25 @@ class App extends Component {
   }
 
   render() { 
+    const { card1, card2 } = this.state;
+
     return ( 
       <>
       {this.state.pageLoaded === true &&
         <div>
           {/*<PeopleCards /> */}
           <PlayButton onClick={e => this.getNewCards(this.state.totalPeopleCount)} />
+
+          { this.state.card1 !== null && this.state.card2 !== null &&
+            <div className="row">
+              <div className="col">
+                <PlayingCard name={card1.name} height={card1.height} mass={card1.mass} />
+              </div>
+              <div className="col">
+                <PlayingCard name={card2.name} height={card2.height} mass={card2.mass} />
+              </div>
+            </div>
+          }
         </div>
       }
       {this.state.pageLoaded === false &&
