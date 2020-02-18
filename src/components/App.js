@@ -22,21 +22,20 @@ class App extends Component {
     })
   }
 
-  getNewCards () {
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-    getPerson(3).then(data => {
-      console.log('getNewCards 3', data)
-      this.setState({
-        card1: data
-      })
-    })
-
-    getPerson(5).then(data => {
-      console.log('getNewCards 5', data)
-      this.setState({
-        card2: data
-      })
-    })
+  /**
+   * Get the cards from the API
+   * @param {number} id1 
+   * @param {number} id2 
+   */
+  getNewCards (id1, id2) {
+    // Get both cards and get teh result at the same time
+    Promise.all([getPerson(id1), getPerson(id2)]).then(result => {
+      console.log(result);
+      //First Card
+        this.setState({card1: result[0].data });
+      // Second card
+        this.setState({card2: result[1].data });
+    });
   }
 
   render() { 
@@ -45,7 +44,7 @@ class App extends Component {
       {this.state.pageLoaded === true &&
         <div>
           {/*<PeopleCards /> */}
-          <PlayButton onClick={this.getNewCards.bind(this)} />
+          <PlayButton onClick={e => this.getNewCards(1,2)} />
         </div>
       }
       {this.state.pageLoaded === false &&
