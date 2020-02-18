@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { getAllPeople, getPerson } from '../utils/apiBase'
 import PlayButton from './PlayButton';
+import { pickTwoUniqueNumbers } from '../utils/helpers'
 
 class App extends Component {
   state = {
     pageLoaded: false,
-    TotalPeopleCount: 0,
+    totalPeopleCount: 0,
     card1: null,
     card2: null
   }
@@ -17,7 +18,7 @@ class App extends Component {
       // SAVE DATA
       this.setState({
         pageLoaded: true,
-        TotalPeopleCount: data.count
+        totalPeopleCount: data.count
       })
     })
   }
@@ -27,9 +28,12 @@ class App extends Component {
    * @param {number} id1 
    * @param {number} id2 
    */
-  getNewCards (id1, id2) {
+  getNewCards (maxNo) {
+    const cardNos = pickTwoUniqueNumbers(maxNo);
+    console.log('cardno', cardNos)
+
     // Get both cards and get teh result at the same time
-    Promise.all([getPerson(id1), getPerson(id2)]).then(result => {
+    Promise.all([getPerson(1), getPerson(2)]).then(result => {
       console.log('result', result)
         this.setState({
           card1: result[0],
@@ -44,7 +48,7 @@ class App extends Component {
       {this.state.pageLoaded === true &&
         <div>
           {/*<PeopleCards /> */}
-          <PlayButton onClick={e => this.getNewCards(1,2)} />
+          <PlayButton onClick={e => this.getNewCards(this.state.totalPeopleCount)} />
         </div>
       }
       {this.state.pageLoaded === false &&
