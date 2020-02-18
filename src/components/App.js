@@ -37,7 +37,7 @@ class App extends Component {
     console.log('cardno', cardNos)
 
     // Get both cards and get teh result at the same time
-    Promise.all([getPerson(1), getPerson(2)]).then(result => {
+    Promise.all([getPerson(cardNos.n1), getPerson(cardNos.n2)]).then(result => {
       console.log('result', result)
         this.setState({
           card1: result[0],
@@ -47,28 +47,28 @@ class App extends Component {
   }
 
   render() { 
-    const { card1, card2 } = this.state;
+    const { card1, card2, totalPeopleCount, pageLoaded } = this.state;
 
     return ( 
       <>
       {this.state.pageLoaded === true &&
         <div>
           {/*<PeopleCards /> */}
-          <PlayButton onClick={e => this.getNewCards(this.state.totalPeopleCount)} />
+          <PlayButton onClick={e => this.getNewCards(totalPeopleCount)} />
 
-          { this.state.card1 !== null && this.state.card2 !== null &&
+          { card1 !== null && card2 !== null &&
             <div className="row">
               <div className="col">
-                <PlayingCard name={card1.name} height={card1.height} mass={card1.mass} />
+                <PlayingCard name={card1.name} mass={card1.mass} />
               </div>
               <div className="col">
-                <PlayingCard name={card2.name} height={card2.height} mass={card2.mass} />
+                <PlayingCard name={card2.name} mass={card2.mass} />
               </div>
             </div>
           }
         </div>
       }
-      {this.state.pageLoaded === false &&
+      {pageLoaded === false &&
         <div>
           LOADING
         </div>
