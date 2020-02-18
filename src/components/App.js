@@ -30,11 +30,11 @@ class App extends Component {
   getNewCards (id1, id2) {
     // Get both cards and get teh result at the same time
     Promise.all([getPerson(id1), getPerson(id2)]).then(result => {
-      console.log(result);
-      //First Card
-        this.setState({card1: result[0].data });
-      // Second card
-        this.setState({card2: result[1].data });
+      console.log('result', result)
+        this.setState({
+          card1: result[0],
+          card2: result[1]
+        });
     });
   }
 
