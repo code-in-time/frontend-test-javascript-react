@@ -4,6 +4,7 @@
  */
 export const getRandomNumber = (maxNo) => {
   return Math.floor(Math.random() * maxNo) + 1
+  console.log('s')
 }
 
 /**
