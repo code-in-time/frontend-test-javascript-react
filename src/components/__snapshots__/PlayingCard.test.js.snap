@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should test the PlayingCard.js snapshot 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <ul>
+      <h5
+        className="card-title"
+      >
+        
+      </h5>
+      <li>
+        Mass: 
+        
+      </li>
+    </ul>
+  </div>
+</div>
+`;

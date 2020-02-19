@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should test the App.js snapshot 1`] = `
+<div>
+  LOADING
+</div>
+`;

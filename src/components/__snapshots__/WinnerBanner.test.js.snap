@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should test the WinnerBanner.js snapshot 1`] = `
+<div
+  className="mt-4"
+>
+  Results: 
+  <strong>
+    fffff
+  </strong>
+</div>
+`;
