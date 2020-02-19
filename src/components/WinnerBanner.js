@@ -5,7 +5,7 @@ class WinnerBanner extends Component {
   render() { 
     return ( 
       <div className="mt-4">
-        Results: {this.props.result}
+        Results: <strong>{this.props.result}</strong>
       </div>
      );
   }

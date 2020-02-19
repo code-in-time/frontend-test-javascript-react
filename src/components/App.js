@@ -12,7 +12,8 @@ class App extends Component {
     totalPeopleCount: 0,
     card1: null,
     card2: null,
-    result: ''
+    result: null,
+    apiGetPersonLoading: false
   }
 
   componentDidMount() {
@@ -34,16 +35,21 @@ class App extends Component {
    */
   getNewCards (maxNo) {
     // Reset
-    this.setState({card1: null, card2: null, result: null})
-    // Pick two card ids
+    this.setState({
+      card1: null,
+      card2: null,
+      result: null,
+      apiGetPersonLoading: true
+    })
+    // Pick two unique card IDs
     const cardNos = pickTwoUniqueNumbers(maxNo);
-    console.log('cardno', cardNos)
 
-    // Get both cards and get teh result at the same time
+    // Get both cards and get the result at the same time
     Promise.all([getPerson(cardNos.n1), getPerson(cardNos.n2)]).then(result => {
       this.setState({
         card1: result[0],
-        card2: result[1]
+        card2: result[1],
+        apiGetPersonLoading: false
       });
 
       this.calculateWinnerOfMass(
@@ -56,10 +62,12 @@ class App extends Component {
   }
 
   calculateWinnerOfMass(card1Name, card1Mass, card2Name, card2Mass) {
-
     let result = ''
-    // TODO: handle unknown
-    if (typeof card1Mass === 'string' ||  typeof card2Mass === 'string'){
+    // Remove the comma
+    card1Mass = card1Mass.replace(',','');
+    card2Mass = card2Mass.replace(',','');
+
+    if (isNaN(card1Mass) || isNaN(card2Mass)){
       result = text.noWinner;
     } else if (card1Mass === card2Mass){
       result = text.draw;
@@ -83,7 +91,7 @@ class App extends Component {
       {this.state.pageLoaded === true &&
         <div>
           <h3>{text.clickTo}</h3>
-          <PlayButton onClick={e => this.getNewCards(totalPeopleCount)} />
+          { !this.state.apiGetPersonLoading && <PlayButton apiGetPersonLoading={this.state.apiGetPersonLoading} onClick={e => this.getNewCards(totalPeopleCount)} />}
 
           { card1 !== null && card2 !== null &&
             <div className="row">
@@ -97,7 +105,7 @@ class App extends Component {
           }
 
           {/* Show the winner */}
-          {result !== '' && <WinnerBanner result={result} />}
+          {result !== null && <WinnerBanner result={result} />}
         </div>
       }
       {pageLoaded === false &&
