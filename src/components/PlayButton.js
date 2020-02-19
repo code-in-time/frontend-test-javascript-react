@@ -7,5 +7,5 @@ class PlayButton extends Component {
     return ( <button className="btn btn-primary" onClick={this.props.onClick}>{text.play}</button> );
   }
 }
- 
+
 export default PlayButton;

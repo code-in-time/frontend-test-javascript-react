@@ -13,5 +13,5 @@ class PeopleCards extends Component {
      );
   }
 }
- 
+
 export default PeopleCards;

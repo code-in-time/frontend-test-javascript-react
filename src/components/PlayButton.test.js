@@ -5,4 +5,4 @@ import PlayButton from './PlayButton';
 it('Should test the PlayButton.js snapshot', () => {
   const tree = renderer.create(<PlayButton />).toJSON()
   expect(tree).toMatchSnapshot();
-}) 
+})
