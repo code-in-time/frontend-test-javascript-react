@@ -6,7 +6,7 @@ exports[`Should test the WinnerBanner.js snapshot 1`] = `
 >
   Results: 
   <strong>
-    fffff
+    
   </strong>
 </div>
 `;

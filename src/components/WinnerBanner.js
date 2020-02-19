@@ -12,7 +12,7 @@ class WinnerBanner extends Component {
 }
 
 WinnerBanner.defaultProps = {
-  result: 'fffff',
+  result: '',
 };
 
 WinnerBanner.propTypes = {
