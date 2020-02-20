@@ -6,7 +6,7 @@
 ## To run the tests
 - npm run test
 
-## To the run the game
+## To run the game
 - npm run start
 
 ### NOTE 20/02/2020
